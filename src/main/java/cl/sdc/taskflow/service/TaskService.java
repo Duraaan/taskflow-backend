@@ -8,6 +8,8 @@ import cl.sdc.taskflow.repository.TaskRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TaskService {
@@ -27,5 +29,9 @@ public class TaskService {
     public Task getTaskById(Long id) {
         return taskRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Tarea no encontrada con ID: " + id));
+    }
+
+    public List<Task> getAllTasks() {
+        return taskRepository.findAll();
     }
 }
