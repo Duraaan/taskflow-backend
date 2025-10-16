@@ -7,6 +7,13 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
+/**
+ * Representa la entidad principal para la gestión de tareas en la base de datos.
+ * Define la estructura de la tabla 'task' y sus propiedades.
+ *
+ * @author Sebastián Durán
+ * @version 1.0
+ */
 @Data
 @Entity
 @Table(name = "Tasks")

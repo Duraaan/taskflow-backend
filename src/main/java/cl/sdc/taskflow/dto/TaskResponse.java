@@ -6,6 +6,12 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
+/**
+ * Data Transfer Object (DTO) utilizado para la respuesta de las operaciones de lectura (GET).
+ * Este DTO define el contrato de la API, exponiendo solo los campos necesarios al cliente.
+ *
+ * @author Sebastián Durán
+ */
 @Data
 public class TaskResponse {
 
