@@ -1,8 +1,10 @@
 package cl.sdc.taskflow.controller;
 
 import cl.sdc.taskflow.dto.TaskRequest;
+import cl.sdc.taskflow.dto.TaskResponse;
 import cl.sdc.taskflow.dto.TaskUpdateRequest;
 import cl.sdc.taskflow.model.entity.Task;
+import cl.sdc.taskflow.model.enums.TaskStatus;
 import cl.sdc.taskflow.service.TaskService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,14 +28,14 @@ public class TaskController {
 
 
     @GetMapping("/{id}")
-    public Task getTaskById(@PathVariable Long id) {
+    public TaskResponse getTaskById(@PathVariable Long id) {
         return taskService.getTaskById(id);
     }
 
     @GetMapping
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
-    };
+    public List<TaskResponse> getTasks(@RequestParam(required = false) TaskStatus status) {
+        return taskService.getByStatus(status);
+    }
 
     @PutMapping("/{id}")
     public Task updateTask(@PathVariable Long id, @Valid @RequestBody TaskUpdateRequest request) {
@@ -45,4 +47,6 @@ public class TaskController {
     public void deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
     }
+
+
 }
