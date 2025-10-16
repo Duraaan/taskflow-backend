@@ -45,4 +45,12 @@ public class TaskService {
 
         return taskRepository.save(task);
     }
+
+    public void deleteTask(Long id) {
+        if (!taskRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Tarea no encontrada con ID: " + id);
+        }
+
+        taskRepository.deleteById(id);
+    }
 }
