@@ -1,6 +1,7 @@
 package cl.sdc.taskflow.controller;
 
 import cl.sdc.taskflow.dto.TaskRequest;
+import cl.sdc.taskflow.dto.TaskUpdateRequest;
 import cl.sdc.taskflow.model.entity.Task;
 import cl.sdc.taskflow.service.TaskService;
 import jakarta.validation.Valid;
@@ -33,4 +34,9 @@ public class TaskController {
     public List<Task> getAllTasks() {
         return taskService.getAllTasks();
     };
+
+    @PutMapping("/{id}")
+    public Task updateTask(@PathVariable Long id, @Valid @RequestBody TaskUpdateRequest request) {
+        return taskService.updateTask(id, request);
+    }
 }

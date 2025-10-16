@@ -1,6 +1,7 @@
 package cl.sdc.taskflow.service;
 
 import cl.sdc.taskflow.dto.TaskRequest;
+import cl.sdc.taskflow.dto.TaskUpdateRequest;
 import cl.sdc.taskflow.exception.ResourceNotFoundException;
 import cl.sdc.taskflow.model.entity.Task;
 import cl.sdc.taskflow.model.enums.TaskStatus;
@@ -33,5 +34,15 @@ public class TaskService {
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
+    }
+
+    public Task updateTask(Long id, TaskUpdateRequest request) {
+        Task task = getTaskById(id);
+
+        task.setTitle(request.getTitle());
+        task.setDescription(request.getDescription());
+        task.setStatus(request.getStatus());
+
+        return taskRepository.save(task);
     }
 }
