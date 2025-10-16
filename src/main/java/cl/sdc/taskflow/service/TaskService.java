@@ -1,6 +1,7 @@
 package cl.sdc.taskflow.service;
 
 import cl.sdc.taskflow.dto.TaskRequest;
+import cl.sdc.taskflow.exception.ResourceNotFoundException;
 import cl.sdc.taskflow.model.entity.Task;
 import cl.sdc.taskflow.model.enums.TaskStatus;
 import cl.sdc.taskflow.repository.TaskRepository;
@@ -21,5 +22,10 @@ public class TaskService {
         task.setStatus(TaskStatus.PENDING);
 
         return taskRepository.save(task);
+    }
+
+    public Task getTaskById(Long id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Tarea no encontrada con ID: " + id));
     }
 }
